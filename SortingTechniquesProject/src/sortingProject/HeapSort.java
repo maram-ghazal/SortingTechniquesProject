@@ -1,5 +1,7 @@
 package sortingProject;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HeapSort {
@@ -42,6 +44,27 @@ public class HeapSort {
 //			Collections.swap(array, 0, i);
 			maxHeapify(array, i, 0);
 		}
+	}
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		FileReading fileReading = new FileReading();
+		HeapSort heapS = new HeapSort();
+
+		ArrayList<Integer> heap = new ArrayList<>();
+		fileReading.fileReader(new File("heapFile.txt"), heap);
+
+		long startTime = System.currentTimeMillis();
+		heapS.heapSort(heap, heap.size());
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+
+		System.out.println("****Heap Sort Algorithm****");
+		System.out.println("-Sorted Array: " + heap);
+		System.out.println("-Number of elements= " + heap.size());
+		System.out.println("-The running time of Heap Sort is " + executionTime + " " + "ms" + " " + "or" + " "
+				+ executionTime / 1000d + " " + "seconds");
+
 	}
 
 }
